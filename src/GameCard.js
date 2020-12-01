@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
-        backgroundColor: '#424242',
-        color: '#FFFFFF',
+        // backgroundColor: '#424242',
+        // color: '#FFFFFF',
     },
     gameImage: {
         height: 200,
@@ -32,7 +32,7 @@ function GameCard({gameId, gameName, gameImage, gameDescription}) {
                             {gameName}
                         </Typography>
                         <Typography variant="body2"
-                            // color="textSecondary"
+                            color="textSecondary"
                                     component="p">
                             {gameDescription}
                         </Typography>

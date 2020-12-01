@@ -5,9 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import HomeIcon from '@material-ui/icons/Home';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from "@material-ui/core/Grid";
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,8 +23,10 @@ const useStyles = makeStyles(theme => ({
         align: "right"
     },
     appBar: {
-        backgroundColor: '#333333',
-        color: '#FFFFFF',
+        backgroundColor: 'transparent',
+        color: '#147EFB',
+        // filter: 'blur(2px)',
+        // TODO - Add Blur Background Image
     },
 }));
 
@@ -33,7 +35,7 @@ function HeaderBar({title}) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="sticky" className={classes.appBar}>
+            <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Grid
                         container
@@ -62,6 +64,7 @@ function HeaderBar({title}) {
                     </Grid>
                 </Toolbar>
             </AppBar>
+            <Toolbar/>
         </div>
     );
 }
