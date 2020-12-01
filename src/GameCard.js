@@ -10,13 +10,11 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
+        backgroundColor: '#424242',
+        color: '#FFFFFF',
     },
-    championImage: {
+    gameImage: {
         height: 200,
-    },
-    positionIcon: {
-        height: 75,
-        width: 75,
     },
 });
 
@@ -26,14 +24,16 @@ function GameCard({gameId, gameName, gameImage, gameDescription}) {
 
     return (
         <Card className={classes.root}>
-            <Link to={"/Champion/" + gameId} style={{color: 'inherit', textDecoration: 'inherit'}}>
+            <Link to={"/YadolaGame/" + gameId} style={{color: 'inherit', textDecoration: 'inherit'}}>
                 <CardActionArea>
-                    <CardMedia className={classes.championImage} image={gameImage} title={gameName}/>
+                    <CardMedia className={classes.gameImage} image={gameImage} title={gameName}/>
                     <CardContent>
                         <Typography gutterBottom variant="h4" component="h2">
                             {gameName}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography variant="body2"
+                            // color="textSecondary"
+                                    component="p">
                             {gameDescription}
                         </Typography>
                     </CardContent>

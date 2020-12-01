@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import HeaderBar from "./HeaderBar";
 import GamesGridList from "./GamesGridList";
 
-function HomePage() {
+function Home() {
     return (
         <Fragment>
             <HeaderBar title={"Yadola Games"}/>
@@ -14,4 +14,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default Home;

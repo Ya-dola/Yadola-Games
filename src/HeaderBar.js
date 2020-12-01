@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
         align: "right"
     },
     appBar: {
-        // TODO - backgroundColor: '',
+        backgroundColor: '#333333',
+        color: '#FFFFFF',
     },
 }));
 

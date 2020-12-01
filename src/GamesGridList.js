@@ -43,8 +43,15 @@ const GamesGridList = () => {
 
     return <Grid container spacing={2} style={{padding: '24px'}}>
         <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
-            <GameCard gameId={"Time Eluder"}
+            <GameCard gameId={"timeEluder"}
                       gameName={"Time Eluder"}
+                      // gameImage={champion.championImage}
+                      gameDescription={"gameDescription"}
+            />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+            <GameCard gameId={"sk-uash"}
+                      gameName={"Sk-uash"}
                       // gameImage={champion.championImage}
                       gameDescription={"gameDescription"}
             />
