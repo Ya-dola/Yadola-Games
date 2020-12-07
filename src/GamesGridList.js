@@ -56,6 +56,13 @@ const GamesGridList = () => {
                       gameDescription={"gameDescription"}
             />
         </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+            <GameCard gameId={"comingSoon"}
+                      gameName={"Coming Soon"}
+                      // gameImage={champion.championImage}
+                      gameDescription={"Coming Soon"}
+            />
+        </Grid>
     </Grid>
 };
 
