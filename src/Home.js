@@ -6,7 +6,6 @@ import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 function Home() {
-
     const [darkTheme, setTheme] = useState(true);
     const appliedTheme = createMuiTheme(darkTheme ? dark : light);
 
@@ -23,12 +22,13 @@ function Home() {
     );
 }
 
-export const light = {
+const light = {
     palette: {
         type: "light"
     }
 };
-export const dark = {
+
+const dark = {
     palette: {
         type: "dark"
     }
