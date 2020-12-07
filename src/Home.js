@@ -1,30 +1,20 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import Box from '@material-ui/core/Box';
 import HeaderBar from "./HeaderBar";
 import GamesGridList from "./GamesGridList";
 import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function Home() {
-    const preferredColorScheme = useMediaQuery('(prefers-color-scheme: dark)');
 
-    const theme = React.useMemo(
-        () =>
-            createMuiTheme({
-                palette: {
-                    type: preferredColorScheme ? 'dark' : 'light',
-                },
-            }),
-        [preferredColorScheme],
-    );
+    const [darkTheme, setTheme] = useState(true);
+    const appliedTheme = createMuiTheme(darkTheme ? dark : light);
 
     return (
-
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={appliedTheme}>
             <CssBaseline/>
             <Fragment>
-                <HeaderBar title={"Yadola Games"}/>
+                <HeaderBar title={"Yadola Games"} darkTheme={darkTheme} changeTheme={theme => setTheme(theme)}/>
                 <Box mx="auto" p={2} overflow="hidden">
                     <GamesGridList/>
                 </Box>
@@ -32,5 +22,16 @@ function Home() {
         </ThemeProvider>
     );
 }
+
+export const light = {
+    palette: {
+        type: "light"
+    }
+};
+export const dark = {
+    palette: {
+        type: "dark"
+    }
+};
 
 export default Home;
