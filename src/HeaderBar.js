@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -71,7 +71,6 @@ function HeaderBar(props) {
                                 <IconButton
                                     edge="start"
                                     color="inherit"
-                                    // onClick={() => setTheme(!darkTheme)}>
                                     onClick={() => props.changeTheme(!props.darkTheme)}>
                                     {themeIcon}
                                 </IconButton>

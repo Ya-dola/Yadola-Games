@@ -30,7 +30,11 @@ const light = {
 
 const dark = {
     palette: {
-        type: "dark"
+        type: "dark",
+        background: {
+            default: "#000000",
+            paper: "#15181c",
+        },
     }
 };
 
