@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from "@material-ui/core/Grid";
 import HomeIcon from '@material-ui/icons/Home';
@@ -16,19 +16,17 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     HomeButton: {
-        marginRight: theme.spacing(2),
+        color: '#147EFB',
+    },
+    ThemeButton: {
+        color: '#147EFB',
     },
     title: {
         display: 'block',
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(2),
-        align: "right"
+        align: "center"
     },
     appBar: {
-        backgroundColor: 'transparent',
-        color: '#147EFB',
-        // filter: 'blur(2px)',
-        // TODO - Add Blur Background Image
+        filter: 'blur(2px)',
     },
 }));
 
@@ -38,50 +36,77 @@ function HeaderBar(props) {
     const themeIcon = props.darkTheme ? <Brightness3Icon fontSize="large"/> : <Brightness7Icon fontSize="large"/>;
     const themeIconTooltip = props.darkTheme ? "Change to Light Mode" : "Change to Dark Mode";
 
+    const appliedAppBarTheme = createMuiTheme(AppBarTheme);
+    const [appBarTheme, setAppBarTheme] = useState("primary");
+    const changeAppBarTheme = () => {
+        appBarTheme === "primary" ? setAppBarTheme("secondary") : setAppBarTheme("primary");
+    };
+
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Grid
-                        container
-                        justify={"space-between"}
-                        alignItems={"baseline"}>
-                        <Grid item>
-                            <Tooltip title={"Home"} arrow>
-                                <IconButton
-                                    edge="start"
-                                    className={classes.HomeButton}
-                                    color="inherit">
-                                    <Link to={"/"} style={{color: 'inherit', textDecoration: 'inherit'}}>
-                                        <HomeIcon fontSize="large"/>
-                                    </Link>
-                                </IconButton>
-                            </Tooltip>
+            <ThemeProvider theme={appliedAppBarTheme}>
+                <AppBar position="fixed" color={appBarTheme}>
+                    <Toolbar>
+                        <Grid
+                            container
+                            justify={"space-between"}
+                            alignItems={"baseline"}>
+                            <Grid item>
+                                <Tooltip title={"Home"} arrow>
+                                    <IconButton
+                                        edge="start"
+                                        className={classes.HomeButton}
+                                        color="inherit">
+                                        <Link to={"/"} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                                            <HomeIcon fontSize="large"/>
+                                        </Link>
+                                    </IconButton>
+                                </Tooltip>
+                            </Grid>
+                            <Grid item>
+                                <Typography
+                                    className={classes.title}
+                                    variant="h6"
+                                    noWrap>
+                                    {props.title}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Tooltip title={themeIconTooltip} arrow>
+                                    <IconButton
+                                        edge="start"
+                                        className={classes.ThemeButton}
+                                        color="inherit"
+                                        onClick={() => {
+                                            props.changeTheme(!props.darkTheme);
+                                            changeAppBarTheme();
+                                        }}>
+                                        {themeIcon}
+                                    </IconButton>
+                                </Tooltip>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <Typography
-                                className={classes.title}
-                                variant="h6"
-                                noWrap>
-                                {props.title}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Tooltip title={themeIconTooltip} arrow>
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    onClick={() => props.changeTheme(!props.darkTheme)}>
-                                    {themeIcon}
-                                </IconButton>
-                            </Tooltip>
-                        </Grid>
-                    </Grid>
-                </Toolbar>
-            </AppBar>
-            <Toolbar/>
+                    </Toolbar>
+                </AppBar>
+                <Toolbar/>
+            </ThemeProvider>
         </div>
     );
 }
+
+const AppBarTheme = {
+    palette: {
+        primary: {
+            main: "rgba(22,29,31,0.6)",
+            // main: "rgba(21, 24, 28, 0.6)",
+            contrastText: '#FFFFFF',
+            divider: '#FFF',
+        },
+        secondary: {
+            main: "rgba(0, 0, 0, 0.14)",
+            contrastText: '#000000',
+        }
+    }
+};
 
 export default HeaderBar;
